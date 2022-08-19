@@ -1,0 +1,19 @@
+{
+    "name": "101bas/paynl-rest-lib",
+    "type": "library",
+    "require": {
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^7.4",
+        "symfony/serializer": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "PaynlRest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bas Heuft"
+        }
+    ]
+}
