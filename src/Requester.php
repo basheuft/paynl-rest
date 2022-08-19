@@ -61,17 +61,16 @@ class Requester
      */
     public function request(RequestInterface $r): ResponseInterface
     {
-        if ($r instanceof ServiceIdAwareRequest) {
-            $r->setServiceId($this->serviceId);
-        }
-
         $headers = [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
             'Authorization' => sprintf('Basic %s', $this->getB64Auth()),
         ];
 
-        $request = new Request($r->getMethod(), $r->getUrlPath(), $headers, $r->getBody());
+        // Serialize data
+        $body = $this->serializer->serialize($r->getData(), 'json');
+
+        $request = new Request($r->getMethod(), $r->getUrlPath(), $headers, $body);
         $response = $this->httpClient->send($request);
 
         return $this->serializer->deserialize($response->getBody()->getContents(), $r->getResponseClass(), 'json');
