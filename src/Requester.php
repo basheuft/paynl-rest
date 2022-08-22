@@ -6,8 +6,8 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
+use PaynlRest\Model\ServiceIdAwareInterface;
 use PaynlRest\Request\RequestInterface;
-use PaynlRest\Request\ServiceIdAwareRequest;
 use PaynlRest\Response\ResponseInterface;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
@@ -56,12 +56,11 @@ class Requester
     }
 
     /**
-     * @throws Exception\ServiceIdNotSetException
      * @throws GuzzleException
      */
     public function request(RequestInterface $r): ResponseInterface
     {
-        if ($r instanceof ServiceIdAwareRequest) {
+        if ($r instanceof ServiceIdAwareInterface) {
             $r->setServiceId($this->serviceId);
         }
 
@@ -71,7 +70,10 @@ class Requester
             'Authorization' => sprintf('Basic %s', $this->getB64Auth()),
         ];
 
-        $request = new Request($r->getMethod(), $r->getUrlPath(), $headers, $r->getBody());
+        // Serialize data
+        $body = $this->serializer->serialize($r->getData(), 'json');
+
+        $request = new Request($r->getMethod(), $r->getUrlPath(), $headers, $body);
         $response = $this->httpClient->send($request);
 
         return $this->serializer->deserialize($response->getBody()->getContents(), $r->getResponseClass(), 'json');
