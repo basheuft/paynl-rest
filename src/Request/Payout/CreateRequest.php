@@ -5,21 +5,20 @@ namespace PaynlRest\Request\Payout;
 use PaynlRest\Http\Method;
 use PaynlRest\Model\Customer\CustomerInterface;
 use PaynlRest\Model\Payment\PaymentInterface;
+use PaynlRest\Model\ServiceIdAwareInterface;
 use PaynlRest\Model\Stats\StatsInterface;
-use PaynlRest\Model\Transaction\TransactionInterface;
-use PaynlRest\Request\ServiceIdAwareRequest;
 use PaynlRest\Request\RequestInterface;
 use PaynlRest\Response\Payout\CreateResponse;
 
-class CreateRequest implements RequestInterface
+class CreateRequest implements RequestInterface, ServiceIdAwareInterface
 {
 
-    private TransactionInterface $transaction;
+    private Transaction $transaction;
     private PaymentInterface $payment;
     private CustomerInterface $customer;
     private StatsInterface $stats;
 
-    public function __construct(TransactionInterface $transaction, PaymentInterface $payment, CustomerInterface $customer, StatsInterface $stats)
+    public function __construct(Transaction $transaction, PaymentInterface $payment, CustomerInterface $customer, StatsInterface $stats)
     {
         $this->transaction = $transaction;
         $this->payment = $payment;
@@ -50,5 +49,10 @@ class CreateRequest implements RequestInterface
     public function getResponseClass(): string
     {
         return CreateResponse::class;
+    }
+
+    public function setServiceId(string $serviceId): void
+    {
+        $this->transaction->setServiceId($serviceId);
     }
 }

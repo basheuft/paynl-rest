@@ -6,8 +6,8 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
+use PaynlRest\Model\ServiceIdAwareInterface;
 use PaynlRest\Request\RequestInterface;
-use PaynlRest\Request\ServiceIdAwareRequest;
 use PaynlRest\Response\ResponseInterface;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
@@ -56,11 +56,14 @@ class Requester
     }
 
     /**
-     * @throws Exception\ServiceIdNotSetException
      * @throws GuzzleException
      */
     public function request(RequestInterface $r): ResponseInterface
     {
+        if ($r instanceof ServiceIdAwareInterface) {
+            $r->setServiceId($this->serviceId);
+        }
+
         $headers = [
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',

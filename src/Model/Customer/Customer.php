@@ -8,7 +8,7 @@ class Customer implements CustomerInterface
     private string $firstName;
     private string $lastName;
     private string $ipAddress;
-    private string $birthDate; // ISO-6801
+    private string $birthDate; // ISO-8601
     private string $gender;
     private string $phone;
     private string $email;

@@ -26,13 +26,14 @@ class StatusRequest implements RequestInterface
         return sprintf("transactions/%s/status", $this->transactionId);
     }
 
-    public function getBody(): ?string
+    public function getData(): array
     {
-        return null;
+        return [];
     }
 
     public function getResponseClass(): string
     {
         return StatusResponse::class;
     }
+
 }
