@@ -3,6 +3,9 @@
 namespace PaynlRest\Response\Transaction;
 
 use PaynlRest\Model\Amount;
+use PaynlRest\Model\PaymentData;
+use PaynlRest\Model\PaymentMethod;
+use PaynlRest\Model\PaymentStatus;
 use PaynlRest\Response\ResponseInterface;
 
 class StatusResponse implements ResponseInterface
@@ -15,9 +18,9 @@ class StatusResponse implements ResponseInterface
     private Amount $amountPaid;
     private Amount $amountRefunded;
 
-    private array $paymentData;
-    private array $paymentMethod;
-    private array $status;
+    private PaymentData $paymentData;
+    private PaymentMethod $paymentMethod;
+    private PaymentStatus $status;
 
     private string $description;
     private string $orderId;
@@ -123,54 +126,54 @@ class StatusResponse implements ResponseInterface
     }
 
     /**
-     * @return array
+     * @return PaymentData
      */
-    public function getPaymentData(): array
+    public function getPaymentData(): PaymentData
     {
         return $this->paymentData;
     }
 
     /**
-     * @param array $paymentData
+     * @param PaymentData $paymentData
      * @return StatusResponse
      */
-    public function setPaymentData(array $paymentData): StatusResponse
+    public function setPaymentData(PaymentData $paymentData): StatusResponse
     {
         $this->paymentData = $paymentData;
         return $this;
     }
 
     /**
-     * @return array
+     * @return PaymentMethod
      */
-    public function getPaymentMethod(): array
+    public function getPaymentMethod(): PaymentMethod
     {
         return $this->paymentMethod;
     }
 
     /**
-     * @param array $paymentMethod
+     * @param PaymentMethod $paymentMethod
      * @return StatusResponse
      */
-    public function setPaymentMethod(array $paymentMethod): StatusResponse
+    public function setPaymentMethod(PaymentMethod $paymentMethod): StatusResponse
     {
         $this->paymentMethod = $paymentMethod;
         return $this;
     }
 
     /**
-     * @return array
+     * @return PaymentStatus
      */
-    public function getStatus(): array
+    public function getStatus(): PaymentStatus
     {
         return $this->status;
     }
 
     /**
-     * @param array $status
+     * @param PaymentStatus $status
      * @return StatusResponse
      */
-    public function setStatus(array $status): StatusResponse
+    public function setStatus(PaymentStatus $status): StatusResponse
     {
         $this->status = $status;
         return $this;

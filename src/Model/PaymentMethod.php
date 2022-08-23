@@ -19,9 +19,21 @@ class PaymentMethod implements PaymentMethodInterface
         return $this->id;
     }
 
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
+    }
+
     public function getSubId(): ?string
     {
         return $this->subId;
+    }
+
+    public function setSubId(?string $subId): self
+    {
+        $this->subId = $subId;
+        return $this;
     }
 
 }
