@@ -2,7 +2,7 @@
 
 namespace PaynlRest\Model;
 
-class Address
+class Address implements AddressInterface
 {
 
     private ?string $firstName;
