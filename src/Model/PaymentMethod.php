@@ -6,9 +6,9 @@ class PaymentMethod implements PaymentMethodInterface
 {
 
     private int $id;
-    private ?string $subId;
+    private mixed $subId;
 
-    public function __construct(int $id, ?string $subId = null)
+    public function __construct(int $id, mixed $subId = null)
     {
         $this->id = $id;
         $this->subId = $subId;
@@ -25,12 +25,12 @@ class PaymentMethod implements PaymentMethodInterface
         return $this;
     }
 
-    public function getSubId(): ?string
+    public function getSubId(): mixed
     {
         return $this->subId;
     }
 
-    public function setSubId(?string $subId): self
+    public function setSubId(mixed $subId): self
     {
         $this->subId = $subId;
         return $this;
