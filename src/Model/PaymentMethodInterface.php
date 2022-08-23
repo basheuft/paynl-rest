@@ -6,6 +6,6 @@ interface PaymentMethodInterface
 {
 
     public function getId(): int;
-    public function getSubId(): ?string;
+    public function getSubId(): mixed;
 
 }
