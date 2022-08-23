@@ -10,7 +10,7 @@ class Order implements OrderInterface
     private ?string $invoiceDate;
     private ?AddressInterface $deliveryAddress;
     private ?AddressInterface $invoiceAddress;
-    private ?array $products;
+    private array $products;
 
     public function __construct(
         ?string $countryCode,
@@ -18,7 +18,7 @@ class Order implements OrderInterface
         ?string $invoiceDate,
         ?AddressInterface $deliveryAddress,
         ?AddressInterface $invoiceAddress,
-        ?array $products
+        array $products = []
     )
     {
         $this->countryCode = $countryCode;
@@ -54,7 +54,7 @@ class Order implements OrderInterface
         return $this->invoiceAddress;
     }
 
-    public function getProducts(): ?array
+    public function getProducts(): array
     {
         return $this->products;
     }
