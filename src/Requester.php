@@ -2,7 +2,6 @@
 
 namespace PaynlRest;
 
-use Doctrine\Common\Annotations\AnnotationReader;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
@@ -13,8 +12,6 @@ use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
 use Symfony\Component\PropertyInfo\PropertyInfoExtractor;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
-use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -40,10 +37,9 @@ class Requester
         ]);
 
         // Create serializer
-        $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $extractor = new PropertyInfoExtractor([], [new PhpDocExtractor(), new ReflectionExtractor()]);
         $normalizers = [
-            new ObjectNormalizer($classMetadataFactory, null, null, $extractor)
+            new ObjectNormalizer(null, null, null, $extractor)
         ];
         $encoders = [new JsonEncoder()];
 
