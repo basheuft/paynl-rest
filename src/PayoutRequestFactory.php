@@ -55,6 +55,18 @@ class PayoutRequestFactory
         return $this;
     }
 
+    public function setDescription(string $description): self
+    {
+        $this->transaction->setDescription($description);
+        return $this;
+    }
+
+    public function setReference(string $reference): self
+    {
+        $this->transaction->setReference($reference);
+        return $this;
+    }
+
     private function validBirthDate(string $bd): bool
     {
         // Validate

@@ -2,7 +2,6 @@
 
 namespace PaynlRest\Response\Payout;
 
-use PaynlRest\Model\Transaction\Transaction;
 use PaynlRest\Response\ResponseInterface;
 
 class CreateResponse implements ResponseInterface
