@@ -5,10 +5,10 @@ namespace PaynlRest\Exchange;
 class Notification
 {
 
-    private string $action;
-    private string $orderId;
-    private string $paymentSessionId;
-    private string $ipAddress;
+    private ?string $action = null;
+    private ?string $orderId = null;
+    private ?string $paymentSessionId = null;
+    private ?string $ipAddress = null;
     private mixed $amount;
     private mixed $extra1;
     private mixed $extra2;
