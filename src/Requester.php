@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use PaynlRest\Model\ServiceIdAwareInterface;
 use PaynlRest\Request\RequestInterface;
+use PaynlRest\Response\ErrorResponse;
 use PaynlRest\Response\ResponseInterface;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
 use Symfony\Component\PropertyInfo\Extractor\ReflectionExtractor;
@@ -72,7 +73,13 @@ class Requester
         $request = new Request($r->getMethod(), $r->getUrlPath(), $headers, $body);
         $response = $this->httpClient->send($request);
 
-        return $this->serializer->deserialize($response->getBody()->getContents(), $r->getResponseClass(), 'json');
+        $respContent = $response->getBody()->getContents();
+        if ($response->getStatusCode() >= 200 && $response->getStatusCode() < 300) {
+            // 2XX-response
+            return $this->serializer->deserialize($respContent, $r->getResponseClass(), 'json');
+        } else {
+            return (new ErrorResponse($response->getStatusCode(), sprintf('HTTP %d: %s', $response->getStatusCode(), $respContent)));
+        }
     }
 
 }
