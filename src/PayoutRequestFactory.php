@@ -37,7 +37,7 @@ class PayoutRequestFactory
         return $this;
     }
 
-    public function setCustomerData(?string $firstName = null, ?string $lastName = null, ?string $birthDate = null): self
+    public function setCustomerData(?string $firstName = null, ?string $lastName = null, ?string $birthDate = null, ?string $ipAddress = null): self
     {
         $this->customer->setFirstName($firstName);
         $this->customer->setLastName($lastName);
@@ -45,6 +45,8 @@ class PayoutRequestFactory
         if ($birthDate !== null && $this->validBirthDate($birthDate)) {
             $this->customer->setBirthDate($birthDate);
         }
+
+        $this->customer->setIpAddress($ipAddress);
 
         return $this;
     }
