@@ -27,9 +27,9 @@ class StatusResponse implements ResponseInterface
     private ?string $reference;
     private string $serviceCode;
 
-    private string $createdAt;
-    private string $createdBy;
-    private string $expiresAt;
+    private ?string $createdAt;
+    private ?string $createdBy;
+    private ?string $expiresAt;
     private ?string $modifiedAt;
     private ?string $modifiedBy;
     private ?string $deletedAt;
@@ -252,54 +252,54 @@ class StatusResponse implements ResponseInterface
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getCreatedAt(): string
+    public function getCreatedAt(): ?string
     {
         return $this->createdAt;
     }
 
     /**
-     * @param string $createdAt
+     * @param ?string $createdAt
      * @return StatusResponse
      */
-    public function setCreatedAt(string $createdAt): StatusResponse
+    public function setCreatedAt(?string $createdAt): StatusResponse
     {
         $this->createdAt = $createdAt;
         return $this;
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getCreatedBy(): string
+    public function getCreatedBy(): ?string
     {
         return $this->createdBy;
     }
 
     /**
-     * @param string $createdBy
+     * @param ?string $createdBy
      * @return StatusResponse
      */
-    public function setCreatedBy(string $createdBy): StatusResponse
+    public function setCreatedBy(?string $createdBy): StatusResponse
     {
         $this->createdBy = $createdBy;
         return $this;
     }
 
     /**
-     * @return string
+     * @return ?string
      */
-    public function getExpiresAt(): string
+    public function getExpiresAt(): ?string
     {
         return $this->expiresAt;
     }
 
     /**
-     * @param string $expiresAt
+     * @param ?string $expiresAt
      * @return StatusResponse
      */
-    public function setExpiresAt(string $expiresAt): StatusResponse
+    public function setExpiresAt(?string $expiresAt): StatusResponse
     {
         $this->expiresAt = $expiresAt;
         return $this;
