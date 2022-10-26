@@ -16,7 +16,7 @@ class CreateResponse implements ResponseInterface
     private string $id;
     private string $manualTransferCode;
     private mixed $created;
-    private int $modified;
+    private mixed $modified;
 
     /**
      * @return Amount
@@ -145,18 +145,18 @@ class CreateResponse implements ResponseInterface
     }
 
     /**
-     * @return int
+     * @return mixed
      */
-    public function getModified(): int
+    public function getModified(): mixed
     {
         return $this->modified;
     }
 
     /**
-     * @param int $modified
+     * @param mixed $modified
      * @return CreateResponse
      */
-    public function setModified(int $modified): CreateResponse
+    public function setModified(mixed $modified): CreateResponse
     {
         $this->modified = $modified;
         return $this;
