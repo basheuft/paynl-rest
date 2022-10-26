@@ -8,8 +8,8 @@ class CreateResponse implements ResponseInterface
 {
 
     private Transaction $transaction;
-    private int $created;
-    private int $modified;
+    private mixed $created;
+    private mixed $modified;
 
     public function getTransaction(): Transaction
     {
@@ -21,22 +21,22 @@ class CreateResponse implements ResponseInterface
         $this->transaction = $transaction;
     }
 
-    public function getCreated(): int
+    public function getCreated(): mixed
     {
         return $this->created;
     }
 
-    public function setCreated(int $created): void
+    public function setCreated(mixed $created): void
     {
         $this->created = $created;
     }
 
-    public function getModified(): int
+    public function getModified(): mixed
     {
         return $this->modified;
     }
 
-    public function setModified(int $modified): void
+    public function setModified(mixed $modified): void
     {
         $this->modified = $modified;
     }
