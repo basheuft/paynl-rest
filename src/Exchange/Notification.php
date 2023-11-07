@@ -10,9 +10,9 @@ class Notification
     private ?string $paymentSessionId = null;
     private ?string $ipAddress = null;
     private mixed $amount;
-    private mixed $extra1;
-    private mixed $extra2;
-    private mixed $extra3;
+    private mixed $extra1 = null;
+    private mixed $extra2 = null;
+    private mixed $extra3 = null;
     private mixed $info;
 
     /**
