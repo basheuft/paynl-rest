@@ -34,7 +34,7 @@ class Requester
         $this->serviceId = $serviceId;
 
         $this->httpClient = new Client([
-            'base_uri' => 'https://rest.pay.nl/v' . $version . '/'
+            'base_uri' => 'https://rest.achterelkebetaling.nl/v' . $version . '/'
         ]);
 
         // Create serializer
