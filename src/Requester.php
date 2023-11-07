@@ -70,7 +70,12 @@ class Requester
         // Serialize data
         $body = $this->serializer->serialize($r->getData(), 'json');
 
-        $request = new Request($r->getMethod(), $r->getUrlPath(), $headers, $body);
+        if ($r->getMethod() === 'POST') {
+            $request = new Request($r->getMethod(), $r->getUrlPath(), $headers, $body);
+        } else {
+            $request = new Request($r->getMethod(), $r->getUrlPath(), $headers);
+        }
+
         $response = $this->httpClient->send($request);
 
         $respContent = $response->getBody()->getContents();
