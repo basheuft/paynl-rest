@@ -9,7 +9,7 @@ class Iban
     private ?string $bic;
     private string $holder;
 
-    public function __construct(string $number, string $holder, string $bic = null)
+    public function __construct(string $number, string $holder, ?string $bic = null)
     {
         $this->number = $number;
         $this->holder = $holder;
